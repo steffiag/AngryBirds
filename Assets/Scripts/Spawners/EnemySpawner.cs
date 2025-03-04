@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine;
+
 public class EnemySpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public EnemyPool enemyPool;
 
-    // Update is called once per frame
-    void Update()
+    
+    public void SpawnEnemies(Vector3[] enemyPositions)
     {
-        
+        foreach (var position in enemyPositions)
+        {
+            Enemy enemy = enemyPool.GetObject(); 
+            enemy.transform.position = position; 
+            
+            // we could probably set a new state here like [ enemy spawned in ] or something
+        }
     }
+    
 }
+
