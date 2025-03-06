@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameOverManager: ITimerObserver
+public class GameOverManager: MonoBehaviour, ITimerObserver
 {
-    protected TimerSubject timer;
+    protected ITimerSubject timer = new Timer();
     // Start is called before the first frame update
     void Start()
     {
-        timer = FindObjectOfType<Timer>();
         timer.Subscribe(this);
     }
 
