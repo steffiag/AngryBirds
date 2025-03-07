@@ -3568,7 +3568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 456496811976279905, guid: b53d57ae26ac641b28e79b2bf1587f49, type: 3}
-  poolSize: 4
+  poolSize: 3
 --- !u!4 &613167632
 Transform:
   m_ObjectHideFlags: 0
@@ -8897,8 +8897,8 @@ Transform:
   m_GameObject: {fileID: 1762195179}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.981, y: -4.143, z: -0.0070292605}
-  m_LocalScale: {x: 0.39484608, y: 0.25372967, z: 1}
+  m_LocalPosition: {x: -1.9809998, y: -4.1429996, z: -0.0070292605}
+  m_LocalScale: {x: 0.39484605, y: 0.25372967, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2030886028}
@@ -10154,8 +10154,8 @@ Transform:
   m_Children:
   - {fileID: 405548665}
   - {fileID: 12136787}
-  - {fileID: 1762195180}
   - {fileID: 1221296131}
+  - {fileID: 1762195180}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2035551537
