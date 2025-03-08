@@ -9314,6 +9314,8 @@ MonoBehaviour:
   currentPosition: {x: 0, y: 0, z: 0}
   maxLength: 3
   groundBound: -3
+  playerPrefab: {fileID: 4985560508000321396, guid: b53d57ae26ac641b28e79b2bf1587f49, type: 3}
+  birdPositionOffset: -0.3
 --- !u!1 &1769200541
 GameObject:
   m_ObjectHideFlags: 0

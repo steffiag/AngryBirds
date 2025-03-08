@@ -15,6 +15,11 @@ public class Slingshot : MonoBehaviour
 
     public float maxLength;
     public float groundBound;
+
+    public GameObject playerPrefab;
+    Rigidbody2D player;
+    Collider2D playerCollider;
+    public float birdPositionOffset;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +27,8 @@ public class Slingshot : MonoBehaviour
         lineRenderers[1].positionCount = 2;
         lineRenderers[0].SetPosition(0, stripPositions[0].position);
         lineRenderers[1].SetPosition(0, stripPositions[1].position);
+
+        CreatePlayer();
     }
 
     // Update is called once per frame
@@ -43,6 +50,12 @@ public class Slingshot : MonoBehaviour
         
     }
 
+    void CreatePlayer(){
+        player = Instantiate(playerPrefab).GetComponent<Rigidbody2D>();
+        playerCollider = player.GetComponent<Collider2D>();
+        playerCollider.enabled = false;
+    }
+
     void ResetStrips(){
         currentPosition=idlePosition.position;
         SetStrips(currentPosition);
@@ -51,6 +64,10 @@ public class Slingshot : MonoBehaviour
         for (int i = 0; i<stripPositions.Length; i++){
             lineRenderers[i].SetPosition(1, newPosition);
         }
+
+        Vector3 playerPosition = newPosition - center.position;
+        player.transform.position = newPosition +  playerPosition.normalized * birdPositionOffset;
+        player.transform.right = -playerPosition.normalized;
     }
     private void OnMouseDown(){
         isMouseDown=true;

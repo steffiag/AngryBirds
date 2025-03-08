@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 5776589662824644323}
   - component: {fileID: 1624276309057627016}
   - component: {fileID: 456496811976279905}
+  - component: {fileID: 3034868700223390418}
+  - component: {fileID: 498070249659062947}
   m_Layer: 0
   m_Name: Temp_Bat
   m_TagString: Untagged
@@ -28,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.63047683, y: 0.6344265, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -73,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 6f2d70cf167f84541a646169ca78566e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -97,3 +99,87 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15956c107bfe240f8be2fb683824cd36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &3034868700223390418
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4985560508000321396}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 6200000, guid: 6a496472479d14a57b64f9b4d64d6818, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!68 &498070249659062947
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4985560508000321396}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 6a496472479d14a57b64f9b4d64d6818, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.3920365, y: -0.047551394}
+  - {x: -0.47945064, y: 0.26521444}
+  - {x: -0.26523262, y: 0.6340201}
+  - {x: 0.097544074, y: 0.5647316}
+  - {x: 0.30542886, y: 0.34281087}
+  - {x: 0.33664024, y: 0.05526185}
+  - {x: 0.21768105, y: -0.17435503}
+  - {x: 0.27147472, y: -0.37297487}
+  - {x: 0.14507282, y: -0.38064313}
+  - {x: 0.0840168, y: -0.3020444}
+  - {x: -0.020082116, y: -0.35621214}
+  - {x: -0.13593292, y: -0.2922194}
+  - {x: -0.19591922, y: -0.3738649}
+  - {x: -0.32108253, y: -0.3874545}
+  - {x: -0.31857383, y: -0.28809214}
+  - {x: -0.2727738, y: -0.16119218}
+  - {x: -0.2871849, y: -0.041068554}
+  - {x: -0.39151776, y: -0.050116062}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
