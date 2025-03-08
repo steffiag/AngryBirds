@@ -10,12 +10,7 @@ public class EnemyPool : MonoBehaviour
     // Initialize the pool with inactive objects
     void Start()
     {
-        for (int i = 0; i < poolSize; i++)
-        {
-            Enemy newEnemy = Instantiate(enemyPrefab);
-            newEnemy.gameObject.SetActive(true);
-            pool.Enqueue(newEnemy);
-        }
+        // nothing
     }
 
     // Get a player object from the pool

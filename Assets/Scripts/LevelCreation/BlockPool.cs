@@ -10,12 +10,7 @@ public class BlockPool : MonoBehaviour
     // Initialize the pool with inactive objects
     void Start()
     {
-        for (int i = 0; i < poolSize; i++)
-        {
-            Block newBlock = Instantiate(blockPrefab);
-            newBlock.gameObject.SetActive(true);
-            pool.Enqueue(newBlock);
-        }
+        // nothing
     }
 
     // Get a player object from the pool

@@ -20,20 +20,28 @@ public class LevelManager : MonoBehaviour
 
     public void Start()
     {
+        SetMapValues();
         SetupLevel(Vector3.zero, blockPositionsLevel1, blockRotationsLevel1, blockScalesLevel1, enemyPositionsLevel1);
     }
 
     public void SetMapValues()
     {
         // Level 1 Data
-        blockPositionsLevel1 = new Vector3[1];
-        blockPositionsLevel1[0] = new Vector3(0, 0, 0);
+        blockPositionsLevel1 = new Vector3[3];
+        blockPositionsLevel1[0] = new Vector3(8, 0, 0);
+        blockPositionsLevel1[1] = new Vector3(3, 0, 0);
+        blockPositionsLevel1[2] = new Vector3(4, 0, 0);
 
-        blockRotationsLevel1 = new Vector3[1];
+        blockRotationsLevel1 = new Vector3[3];
         blockRotationsLevel1[0] = new Vector3(0, 0, 0);
+        blockRotationsLevel1[1] = new Vector3(0, 0, 0);
+        blockRotationsLevel1[2] = new Vector3(0, 0, 0);
+        
 
-        blockScalesLevel1 = new Vector3[1];
-        blockScalesLevel1[0] = new Vector3(1, 1, 1);
+        blockScalesLevel1 = new Vector3[3];
+        blockScalesLevel1[0] = new Vector3(14, 1.4f, 1);
+        blockScalesLevel1[1] = new Vector3(1, 1, 1);
+        blockScalesLevel1[2] = new Vector3(1, 1, 1);
 
         enemyPositionsLevel1 = new Vector3[1];
         enemyPositionsLevel1[0] = new Vector3(1, 1, 1);
