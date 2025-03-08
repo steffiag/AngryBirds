@@ -19,7 +19,9 @@ public class Slingshot : MonoBehaviour
     public GameObject playerPrefab;
     Rigidbody2D player;
     Collider2D playerCollider;
-    public float birdPositionOffset;
+    public float playerPositionOffset;
+
+    public float force;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +45,10 @@ public class Slingshot : MonoBehaviour
             currentPosition = ClampBoundary(currentPosition); 
 
             SetStrips(currentPosition);
+
+            if (playerCollider){
+                playerCollider.enabled = true;
+            }
         }
         else{
             ResetStrips();
@@ -54,6 +60,8 @@ public class Slingshot : MonoBehaviour
         player = Instantiate(playerPrefab).GetComponent<Rigidbody2D>();
         playerCollider = player.GetComponent<Collider2D>();
         playerCollider.enabled = false;
+
+        player.isKinematic = true;
     }
 
     void ResetStrips(){
@@ -64,18 +72,31 @@ public class Slingshot : MonoBehaviour
         for (int i = 0; i<stripPositions.Length; i++){
             lineRenderers[i].SetPosition(1, newPosition);
         }
-
-        Vector3 playerPosition = newPosition - center.position;
-        player.transform.position = newPosition +  playerPosition.normalized * birdPositionOffset;
-        player.transform.right = -playerPosition.normalized;
+        if (player){
+            Vector3 playerPosition = newPosition - center.position;
+            player.transform.position = newPosition +  playerPosition.normalized * playerPositionOffset;
+            player.transform.right = -playerPosition.normalized;
+        }
+       
     }
     private void OnMouseDown(){
         isMouseDown=true;
     }
     private void OnMouseUp(){
         isMouseDown=false;
+        Shoot();
     }
 
+    void Shoot(){
+        player.isKinematic = false;
+        Invoke("CreatePlayer", 2);
+        Vector3 playerForce = (currentPosition - center.position) * force * -1;
+        player.velocity = playerForce;
+        
+        player = null;
+        playerCollider = null;
+        
+    }
     Vector3 ClampBoundary(Vector3 bottomBound){
         bottomBound.y = Mathf.Clamp(bottomBound.y, groundBound, 1000);
         return bottomBound;
