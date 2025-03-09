@@ -12,6 +12,12 @@ public class LevelManager : MonoBehaviour
 
     public Vector3[] enemyPositionsLevel1;
 
+    public Vector3[] blockPositionsLevel2;
+    public Vector3[] blockRotationsLevel2;
+    public Vector3[] blockScalesLevel2;
+
+    public Vector3[] enemyPositionsLevel2;
+
     // I'll add the other arrays after setting up
 
     public BlockSpawner blockSpawner;
@@ -21,7 +27,7 @@ public class LevelManager : MonoBehaviour
     public void Start()
     {
         SetMapValues();
-        SetupLevel(Vector3.zero, blockPositionsLevel1, blockRotationsLevel1, blockScalesLevel1, enemyPositionsLevel1);
+        SetupLevel(Vector3.zero, blockPositionsLevel2, blockRotationsLevel2, blockScalesLevel2, enemyPositionsLevel2);
     }
 
     public void SetMapValues()
@@ -61,6 +67,46 @@ public class LevelManager : MonoBehaviour
         enemyPositionsLevel1 = new Vector3[2];
         enemyPositionsLevel1[0] = new Vector3(11, -2, 1);
         enemyPositionsLevel1[1] = new Vector3(11, 1.07f, 1);
+
+        // Level 2 Data
+        blockPositionsLevel2 = new Vector3[9];
+        blockPositionsLevel2[0] = new Vector3(9.6f, -3.05f, 0);
+        blockPositionsLevel2[1] = new Vector3(9.6f, -1.47f, 0);
+        blockPositionsLevel2[2] = new Vector3(8.8f, -2.26f, 0);
+        blockPositionsLevel2[3] = new Vector3(8.8f, -0.68f, 0);
+        blockPositionsLevel2[4] = new Vector3(10.4f, -0.68f, 0);
+        blockPositionsLevel2[5] = new Vector3(10.4f, -2.26f, 0);
+        blockPositionsLevel2[6] = new Vector3(9.6f, 0.1f, 0);
+        blockPositionsLevel2[7] = new Vector3(7f, -1.52f, 0);
+        blockPositionsLevel2[8] = new Vector3(12.2f, -1.52f, 0);
+
+        blockRotationsLevel2 = new Vector3[9];
+        blockRotationsLevel2[0] = new Vector3(0, 0, 0);
+        blockRotationsLevel2[1] = new Vector3(0, 0, 0);
+        blockRotationsLevel2[2] = new Vector3(0, 0, 90);
+        blockRotationsLevel2[3] = new Vector3(0, 0, 90);
+        blockRotationsLevel2[4] = new Vector3(0, 0, 90);
+        blockRotationsLevel2[5] = new Vector3(0, 0, 90);
+        blockRotationsLevel2[6] = new Vector3(0, 0, 0);
+        blockRotationsLevel2[7] = new Vector3(0, 0, 90);
+        blockRotationsLevel2[8] = new Vector3(0, 0, 90);
+        
+
+        blockScalesLevel2 = new Vector3[9];
+        blockScalesLevel2[0] = new Vector3(9.5f, 1.4f, 1);
+        blockScalesLevel2[1] = new Vector3(11f, 1.4f, 1);
+        blockScalesLevel2[2] = new Vector3(4.15f, 1.4f, 1);
+        blockScalesLevel2[3] = new Vector3(4.15f, 1.4f, 1);
+        blockScalesLevel2[4] = new Vector3(4.15f, 1.4f, 1);
+        blockScalesLevel2[5] = new Vector3(4.15f, 1.4f, 1);
+        blockScalesLevel2[6] = new Vector3(7.5f, 1.4f, 1);
+        blockScalesLevel2[7] = new Vector3(10.2f, 1.4f, 1);
+        blockScalesLevel2[8] = new Vector3(10.2f, 1.4f, 1);
+
+        enemyPositionsLevel2 = new Vector3[3];
+        enemyPositionsLevel2[0] = new Vector3(9.6f, 0.6f, 1);
+        enemyPositionsLevel2[1] = new Vector3(9.6f, -0.95f, 1);
+        enemyPositionsLevel2[2] = new Vector3(9.6f, -2.52f, 1);
     }
 
     public void SetupLevel(Vector3 playerSpawnPosition, Vector3[] blockPositions, Vector3[] blockRotations, Vector3[] blockScales, Vector3[] enemyPositions)
