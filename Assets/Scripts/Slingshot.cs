@@ -17,11 +17,13 @@ public class Slingshot : MonoBehaviour
     public float groundBound;
 
     public GameObject playerPrefab;
-    Rigidbody2D player;
+    Projectile player;
     Collider2D playerCollider;
     public float playerPositionOffset;
 
     public float force;
+    private bool powerUpApplied = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,15 +55,27 @@ public class Slingshot : MonoBehaviour
         else{
             ResetStrips();
         }
+
+        if (Input.GetKeyDown(KeyCode.E) && !powerUpApplied)
+        {
+            IProjectileState storedPowerUp = PowerUpManager.Instance.GetStoredPowerUp();
+            if (storedPowerUp != null)
+            {
+                player.SetState(storedPowerUp);
+                powerUpApplied = true;
+                PowerUpManager.Instance.ClearPowerUp();
+            }
+        }
         
     }
 
     void CreatePlayer(){
-        player = Instantiate(playerPrefab).GetComponent<Rigidbody2D>();
+        player = Instantiate(playerPrefab).GetComponent<Projectile>();
         playerCollider = player.GetComponent<Collider2D>();
         playerCollider.enabled = false;
+        powerUpApplied = false;
 
-        player.isKinematic = true;
+        player.GetComponent<Rigidbody2D>().isKinematic = true;
     }
 
     void ResetStrips(){
@@ -88,10 +102,14 @@ public class Slingshot : MonoBehaviour
     }
 
     void Shoot(){
-        player.isKinematic = false;
+        player.GetComponent<Rigidbody2D>().isKinematic = false;
+        player.ApplyPowerUp();
+
         Invoke("CreatePlayer", 0);
         Vector3 playerForce = (currentPosition - center.position) * force * -1;
-        player.velocity = playerForce;
+        player.GetComponent<Rigidbody2D>().velocity = playerForce;
+
+        player.ResetToNormal();
         
         player = null;
         playerCollider = null;
