@@ -71,11 +71,14 @@ public class Slingshot : MonoBehaviour
 
     void CreatePlayer(){
         player = Instantiate(playerPrefab).GetComponent<Projectile>();
+        
         playerCollider = player.GetComponent<Collider2D>();
         playerCollider.enabled = false;
         powerUpApplied = false;
 
         player.GetComponent<Rigidbody2D>().isKinematic = true;
+
+        
     }
 
     void ResetStrips(){
