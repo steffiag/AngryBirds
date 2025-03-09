@@ -33,7 +33,7 @@ public class LevelManager : MonoBehaviour
     public void Start()
     {
         SetMapValues();
-        SetupLevel(Vector3.zero, blockPositionsLevel3, blockRotationsLevel3, blockScalesLevel3, enemyPositionsLevel3);
+        SetupLevel(Vector3.zero, blockPositionsLevel1, blockRotationsLevel1, blockScalesLevel1, enemyPositionsLevel1);
     }
 
     public void SetMapValues()
