@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class EnemyPool : MonoBehaviour
 {
+    public static EnemyPool Instance { get; private set; }
+    
     public Enemy enemyPrefab;  // Reference to the Player prefab
     private Queue<Enemy> pool = new Queue<Enemy>();  // The pool for Player objects
     public int poolSize = 1;
