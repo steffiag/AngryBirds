@@ -5,9 +5,13 @@ using UnityEngine.UI;
 public class Timer: MonoBehaviour, ITimerSubject
 {
     public float timeRemaining = 30f;
-    private List<ITimerObserver> observers = new List<ITimerObserver>();
+    public List<ITimerObserver> observers = new List<ITimerObserver>();
     public Text timerText;
     private bool isGameActive = true;
+
+    void Awake(){
+        observers.Clear();
+    }
 
     // Update is called once per frame
     void Update()
@@ -19,8 +23,8 @@ public class Timer: MonoBehaviour, ITimerSubject
             }
             if (timeRemaining <= 0){
                 timerText.text = Mathf.FloorToInt(0).ToString("00") + ":" + (Mathf.FloorToInt(0)).ToString("00");
-                isGameActive = false;
                 SendMessage();
+                isGameActive = false;
                 
             }
         }
@@ -35,6 +39,7 @@ public class Timer: MonoBehaviour, ITimerSubject
     }
 
     public void SendMessage(){
+        Debug.Log(observers.Count);
         for (int i = 0; i<observers.Count; i++){
             observers[i].TimerEvent();
         }
