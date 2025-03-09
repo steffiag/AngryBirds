@@ -32,6 +32,7 @@ public class Slingshot : MonoBehaviour
         lineRenderers[0].SetPosition(0, stripPositions[0].position);
         lineRenderers[1].SetPosition(0, stripPositions[1].position);
 
+        Debug.Log("the slingshot is started");
         CreatePlayer();
     }
 

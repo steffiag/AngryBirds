@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 456496811976279905}
   - component: {fileID: 3034868700223390418}
   - component: {fileID: 498070249659062947}
+  - component: {fileID: -7432763519274896765}
   m_Layer: 0
   m_Name: Temp_Bat
   m_TagString: Player
@@ -183,3 +184,15 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &-7432763519274896765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4985560508000321396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69a79b1ca146c4cb2a201ae06bb624fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
