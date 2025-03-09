@@ -24,6 +24,9 @@ public class PowerUpManager : MonoBehaviour
         storedPowerUp = powerUp;
         powerUpIcon.sprite = icon;
         powerUpIcon.enabled = true;
+        powerUpIcon.color = new Color(1, 1, 1, 1);
+        Debug.Log("Stored Power-Up: " + powerUp.GetType().Name);
+        Debug.Log("Assigned sprite: " + icon.name);
     }
 
     public IProjectileState GetStoredPowerUp()

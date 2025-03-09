@@ -77,6 +77,13 @@ public class Slingshot : MonoBehaviour
         powerUpApplied = false;
 
         player.GetComponent<Rigidbody2D>().isKinematic = true;
+
+        IProjectileState storedPowerUp = PowerUpManager.Instance.GetStoredPowerUp();
+        if (storedPowerUp != null)
+        {
+            player.SetState(storedPowerUp);
+            PowerUpManager.Instance.ClearPowerUp();
+        }
     }
 
     void ResetStrips(){
@@ -104,13 +111,16 @@ public class Slingshot : MonoBehaviour
 
     void Shoot(){
         player.GetComponent<Rigidbody2D>().isKinematic = false;
-        player.ApplyPowerUp();
 
-        Invoke("CreatePlayer", 0);
         Vector3 playerForce = (currentPosition - center.position) * force * -1;
         player.GetComponent<Rigidbody2D>().velocity = playerForce;
 
+        player.ApplyPowerUp();
+        Debug.Log("Projectile Launched! Initial Velocity: " + player.GetComponent<Rigidbody2D>().velocity);
+
         player.ResetToNormal();
+
+        Invoke("CreatePlayer", 0);
         
         player = null;
         playerCollider = null;
