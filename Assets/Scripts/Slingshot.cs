@@ -89,7 +89,7 @@ public class Slingshot : MonoBehaviour
 
     void Shoot(){
         player.isKinematic = false;
-        Invoke("CreatePlayer", 2);
+        Invoke("CreatePlayer", 0);
         Vector3 playerForce = (currentPosition - center.position) * force * -1;
         player.velocity = playerForce;
         
