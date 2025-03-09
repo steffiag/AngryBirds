@@ -177,7 +177,7 @@ public class LevelManager : MonoBehaviour
 
     public void SetupLevel(Vector3 playerSpawnPosition, Vector3[] blockPositions, Vector3[] blockRotations, Vector3[] blockScales, Vector3[] enemyPositions)
     {
-        playerSpawner.SpawnPlayer(playerSpawnPosition);
+        // playerSpawner.SpawnPlayer(playerSpawnPosition);
         blockSpawner.SpawnBlocks(blockPositions, blockRotations, blockScales);
         enemySpawner.SpawnEnemies(enemyPositions);
     }

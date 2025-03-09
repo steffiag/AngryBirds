@@ -8,8 +8,8 @@ public class PlayerSpawner : MonoBehaviour
 
     public void SpawnPlayer(Vector3 spawnPosition)
     {
-        Player player = playerPool.GetObject();
-        player.transform.position = spawnPosition;  // Start Position
+        // Player player = playerPool.GetObject();
+        // player.transform.position = spawnPosition;  // Start Position
     }
 }
 
