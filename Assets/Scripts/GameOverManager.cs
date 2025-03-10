@@ -34,6 +34,7 @@ public class GameOverManager: MonoBehaviour, ITimerObserver
         if (isWinner){
             GameOverWinText.SetActive(true);
             nextLevelButton.SetActive(true);
+            StatsManager.Instance.LevelWon();
         }
         else{
             mainMenuButton.SetActive(true);
@@ -44,7 +45,7 @@ public class GameOverManager: MonoBehaviour, ITimerObserver
 
      public void GoBacktoMenu()
     {
-        //SceneManager.LoadScene("");
+        SceneManager.LoadScene("Home");
     }
 
     public void NextLevel()

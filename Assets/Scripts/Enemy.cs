@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
     {
         // Add points to score/pubsub stuff
         Debug.Log("BLEH IM DED");
+        StatsManager.Instance.EnemyKilled();
         gameObject.SetActive(false);
         EnemyPool.Instance.ReturnObject(this);
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using System;
 
 public class PowerUpManager : MonoBehaviour
 {
@@ -11,7 +12,9 @@ public class PowerUpManager : MonoBehaviour
     public Sprite fastIcon;
     public Sprite heavyIcon;
 
-    void Awake()
+    public event Action OnPowerUpUsed;
+
+    private void Awake()
     {
         if (Instance == null)
         {
@@ -32,6 +35,16 @@ public class PowerUpManager : MonoBehaviour
     public IProjectileState GetStoredPowerUp()
     {
         return storedPowerUp;
+    }
+
+    public void UsePowerUp()
+    {
+        if (storedPowerUp != null)
+        {
+        OnPowerUpUsed?.Invoke();
+
+        ClearPowerUp();
+        }
     }
 
     public void ClearPowerUp()
