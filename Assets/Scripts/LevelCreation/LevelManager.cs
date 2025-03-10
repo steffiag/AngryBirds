@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -23,6 +24,10 @@ public class LevelManager : MonoBehaviour
     public Vector3[] blockScalesLevel3;
 
     public Vector3[] enemyPositionsLevel3;
+    private Dictionary<int, string> levels = new Dictionary<int, string>();
+    private string currentScene;
+
+
 
     // I'll add the other arrays after setting up
 
@@ -32,8 +37,29 @@ public class LevelManager : MonoBehaviour
 
     public void Start()
     {
+        levels.Add(1, "Level 1");
+        levels.Add(2, "Level 2");
+        levels.Add(3, "Level 3");
         SetMapValues();
-        SetupLevel(Vector3.zero, blockPositionsLevel1, blockRotationsLevel1, blockScalesLevel1, enemyPositionsLevel1);
+
+        int newSceneCount = 0;
+        currentScene = SceneManager.GetActiveScene().name;
+        for (int i = 1; i<=levels.Count; i++){
+            if (levels[i] == currentScene){
+                newSceneCount = i + 1;
+                break;
+            }
+        }
+
+        if (newSceneCount == 1)
+        {
+            SetupLevel(Vector3.zero, blockPositionsLevel1, blockRotationsLevel1, blockScalesLevel1, enemyPositionsLevel1);
+        } else if (newSceneCount == 2)
+        {
+            SetupLevel(Vector3.zero, blockPositionsLevel2, blockRotationsLevel2, blockScalesLevel2, enemyPositionsLevel2);
+        } else {
+            SetupLevel(Vector3.zero, blockPositionsLevel3, blockRotationsLevel3, blockScalesLevel3, enemyPositionsLevel3);
+        }
     }
 
     public void SetMapValues()

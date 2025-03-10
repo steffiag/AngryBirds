@@ -110,6 +110,7 @@ public class Slingshot : MonoBehaviour
     }
 
     void Shoot(){
+        GameEvents.ShotFired();
         player.GetComponent<Rigidbody2D>().isKinematic = false;
 
         Vector3 playerForce = (currentPosition - center.position) * force * -1;
