@@ -31,7 +31,7 @@ public class GameOverManager: MonoBehaviour, ITimerObserver
     }
 
     public void GameOver(bool isWinner){
-        if (!isWinner){
+        if (isWinner){
             GameOverWinText.SetActive(true);
             nextLevelButton.SetActive(true);
         }
