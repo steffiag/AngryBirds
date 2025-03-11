@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
+    bool finished;
     private GameOverManager gameOverManager;
 
     void Start(){
@@ -23,8 +24,9 @@ public class EnemyManager : MonoBehaviour
                 no_enemies = false;
             }
         }
-        if (no_enemies){
+        if (no_enemies && !finished){
             gameOverManager.GameOver(true);
+            finished = true;
         }
     }
 }

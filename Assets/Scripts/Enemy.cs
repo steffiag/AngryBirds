@@ -21,10 +21,11 @@ public class Enemy : MonoBehaviour
     {
         // Add points to score/pubsub stuff
         GameEvents.EnemyDied();
+        StatsManager.Instance.EnemyKilled();
         Debug.Log("BLEH IM DED");
         gameObject.SetActive(false);
         EnemyPool.Instance.ReturnObject(this);
-        StatsManager.Instance.EnemyKilled();
+        
     }
 
     void OnCollisionEnter2D(Collision2D collision)

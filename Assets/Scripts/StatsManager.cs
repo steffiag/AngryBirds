@@ -16,10 +16,15 @@ public class StatsManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
+        if (Instance == null){
             Instance = this;
-        else
+            DontDestroyOnLoad(gameObject);
+        }
+        else{
             Destroy(gameObject);
+        }
+        
+
     }
 
     private void Start()
@@ -28,6 +33,7 @@ public class StatsManager : MonoBehaviour
         {
             PowerUpManager.Instance.OnPowerUpUsed += PowerUpUsed;
         }
+        StartStats();
     }
 
     public void LevelWon()
@@ -36,6 +42,20 @@ public class StatsManager : MonoBehaviour
         PlayerPrefs.SetInt("LevelsWon", levelsWon);
         PlayerPrefs.Save();
         OnLevelWon?.Invoke(levelsWon);
+    }
+
+    public void StartStats()
+    {
+        levelsWon = 0;
+        enemiesKilled = 0;
+        powerupsUsed = 0;
+        PlayerPrefs.SetInt("LevelsWon", levelsWon);
+        PlayerPrefs.SetInt("EnemiesKilled", enemiesKilled);
+        PlayerPrefs.SetInt("PowerupsUsed", powerupsUsed);
+        PlayerPrefs.Save();
+        OnLevelWon?.Invoke(levelsWon);
+        OnEnemyKilled?.Invoke(enemiesKilled);
+        OnPowerUpUsed?.Invoke(powerupsUsed);
     }
 
     public void EnemyKilled()

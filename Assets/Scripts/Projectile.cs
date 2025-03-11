@@ -11,21 +11,27 @@ public class Projectile : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         currentState = new NormalState();
+
+        
     }
 
     public void SetState(IProjectileState newState)
     {
         currentState = newState;
         ApplyPowerUp();
+        
+
     }
 
     public void ApplyPowerUp()
     {
         if (currentState != null)
         {
+            Debug.Log(currentState);
             currentState.ApplyEffect(rb);
             Debug.Log("New Velocity: " + rb.velocity);
             Debug.Log("New Mass: " + rb.mass);
+
         }
     }
 
