@@ -25,8 +25,8 @@ public class GameOverManager: MonoBehaviour, ITimerObserver
         levels.Add(3, "Level 3");
     }
 
-    public void SetTimer(Timer myTimer){
-        timer = myTimer;
+    public void SetTimer(Timer time){
+        timer = time;
         timer.Subscribe(this);
 
     }

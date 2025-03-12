@@ -1,4 +1,9 @@
 // Steffia George
+/*
+I included various tests to ensure that the timer would be able to subscribe and unsubscribe the observers properly. Additionally, it checks for edge cases such as when the timeRemaining variable becomes negative.
+I thought that these test cases were able to encapsulate the overall functionality of the timer.
+The cases weren’t brittle as they weren’t focused on the actual GameOverManager observer. Instead, I used a mock of the GameOverManager through the ITimerObserver interface.
+*/
 using NUnit.Framework;
 using NSubstitute;
 using UnityEngine;
