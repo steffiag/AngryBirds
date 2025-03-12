@@ -16,19 +16,23 @@ public class Timer: MonoBehaviour, ITimerSubject
     // Update is called once per frame
     void Update()
     {
+        UpdateTime();
+    }
+
+    public void UpdateTime(){
         if (isGameActive){
             if (timeRemaining > 0){
                 timeRemaining -= Time.deltaTime;
                 timerText.text = Mathf.FloorToInt(timeRemaining/60).ToString("00") + ":" + (Mathf.FloorToInt(timeRemaining%60)).ToString("00");
             }
             if (timeRemaining <= 0){
+                timeRemaining = 0;
                 timerText.text = Mathf.FloorToInt(0).ToString("00") + ":" + (Mathf.FloorToInt(0)).ToString("00");
                 SendMessage();
                 isGameActive = false;
                 
             }
         }
-        
     }
     public void Subscribe(ITimerObserver o){
         observers.Add(o);

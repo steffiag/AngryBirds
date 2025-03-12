@@ -18,11 +18,17 @@ public class GameOverManager: MonoBehaviour, ITimerObserver
     // Start is called before the first frame update
     void Start()
     {
-        timer = FindObjectOfType<Timer>();
+        Timer myTimer = FindObjectOfType<Timer>();
+        SetTimer(myTimer);
         levels.Add(1, "Level 1");
         levels.Add(2, "Level 2");
         levels.Add(3, "Level 3");
+    }
+
+    public void SetTimer(Timer myTimer){
+        timer = myTimer;
         timer.Subscribe(this);
+
     }
 
     public void TimerEvent(){
@@ -67,5 +73,7 @@ public class GameOverManager: MonoBehaviour, ITimerObserver
         }
         
     }
+
+    
 
 }
