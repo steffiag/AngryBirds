@@ -7,7 +7,7 @@ using TMPro;
 public class ScoreManager : MonoBehaviour
 {
     public Text scoreText; // Reference to UI text
-    private int score = 0; // Current score
+    public int score = 0; // Current score
 
     private void OnEnable()
     {
@@ -23,7 +23,7 @@ public class ScoreManager : MonoBehaviour
         GameEvents.OnEnemyDied -= EnemyDied;
     }
 
-    private void UpdateScore(int points)
+    public void UpdateScore(int points)
     {
         Debug.Log("yoyoo");
         score += points;
