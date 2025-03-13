@@ -3,36 +3,28 @@ using NUnit.Framework;
 using NSubstitute;
 using UnityEngine;
 using UnityEngine.TestTools;
+using UnityEngine.UI;
 
 
 [TestFixture]
 public class PowerUpTests
 {
-   private Rigidbody2D mockProjectile;
-
-
-   [SetUp]
-   public void SetUp()
-   {
-       mockProjectile = Substitute.For<Rigidbody2D>();
-   }
-
-
    [Test]
    public void HeavyState_ApplyEffect_IncreasesMassAndForce()
    {
        // Arrange
        var heavyState = new HeavyState();
-       mockProjectile.velocity = new Vector2(5, 0);
-
+       var rigidbody = new GameObject().AddComponent<Rigidbody2D>();
+       rigidbody.mass = 1f;
+       rigidbody.velocity = new Vector2(5, 0);
 
        // Act
-       heavyState.ApplyEffect(mockProjectile);
+       heavyState.ApplyEffect(rigidbody);
 
 
        // Assert
-       mockProjectile.Received().mass = 4f;
-       mockProjectile.Received().AddForce(Arg.Any<Vector2>(), ForceMode2D.Impulse);
+       Assert.AreEqual(4f, rigidbody.mass);
+       Assert.AreNotEqual(new Vector2(5, 0), rigidbody.velocity);
    }
 
 
@@ -41,17 +33,18 @@ public class PowerUpTests
    {
        // Arrange
        var normalState = new NormalState();
-       mockProjectile.mass = 4f;
-       mockProjectile.velocity = new Vector2(10, 0);
+       var rigidbody = new GameObject().AddComponent<Rigidbody2D>();
+       rigidbody.mass = 4f;
+       rigidbody.velocity = new Vector2(10, 0);
 
 
        // Act
-       normalState.ApplyEffect(mockProjectile);
+       normalState.ApplyEffect(rigidbody);
 
 
        // Assert
-       mockProjectile.Received().mass = 1f;
-       Assert.AreEqual(new Vector2(10, 0), mockProjectile.velocity);
+       Assert.AreEqual(1f, rigidbody.mass);
+       Assert.AreEqual(new Vector2(10, 0), rigidbody.velocity);
    }
 
 
@@ -59,13 +52,18 @@ public class PowerUpTests
    public void PowerUpManager_StoresAndGetsPowerUp()
    {
        // Arrange
-       var powerUpManager = new GameObject().AddComponent<PowerUpManager>();
+       var gameObject = new GameObject();
+       var powerUpManager = gameObject.AddComponent<PowerUpManager>();
+       PowerUpManager.Instance = powerUpManager;
+       powerUpManager.powerUpIcon = new GameObject().AddComponent<UnityEngine.UI.Image>();
        var powerUp = new HeavyState();
-
+       var sprite = Sprite.Create(Texture2D.blackTexture, new Rect(0, 0, 1, 1), Vector2.zero);
+       var statsManagerObject = new GameObject();
+       var statsManager = statsManagerObject.AddComponent<StatsManager>();
+       StatsManager.Instance = statsManager;
 
        // Act
-       powerUpManager.StorePowerUp(powerUp, null);
-
+       powerUpManager.StorePowerUp(powerUp, sprite);
 
        // Assert
        Assert.AreEqual(powerUp, powerUpManager.GetStoredPowerUp());
@@ -76,17 +74,32 @@ public class PowerUpTests
    public void PowerUpManager_UsesAndRemovesPowerUp()
    {
        // Arrange
+       var gameObject = new GameObject();
        var powerUpManager = new GameObject().AddComponent<PowerUpManager>();
+       PowerUpManager.Instance = powerUpManager;
        var powerUp = new HeavyState();
        bool called = false;
+       
+       if (StatsManager.Instance == null)
+       {
+        var statsManagerObject = new GameObject();
+        var statsManager = statsManagerObject.AddComponent<StatsManager>();
+        StatsManager.Instance = statsManager;
+       }   
+
+       powerUpManager.powerUpIcon = new GameObject().AddComponent<UnityEngine.UI.Image>();
+       var sprite = Sprite.Create(Texture2D.blackTexture, new Rect(0, 0, 1, 1), Vector2.zero);
+
+
+       void Used()
+       {
+        called = true;
+       }
       
-       powerUpManager.OnPowerUpUsed += delegate {called = true;};
-
-
-       powerUpManager.StorePowerUp(powerUp, null);
-
+       powerUpManager.OnPowerUpUsed += Used;
 
        // Act
+       powerUpManager.StorePowerUp(powerUp, sprite);
        powerUpManager.UsePowerUp();
 
 
@@ -97,21 +110,22 @@ public class PowerUpTests
 
 
    [Test]
-   public void Projectile_SetState_AppliesState()
+   public void Projectile_SetState_SetsTheState()
    {
        // Arrange
        var projectileObject = new GameObject();
        var projectile = projectileObject.AddComponent<Projectile>();
-       projectileObject.AddComponent<Rigidbody2D>();
+       var rigidbody = projectileObject.AddComponent<Rigidbody2D>();
+       projectile.GetType().GetField("rb", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).SetValue(projectile, rigidbody); //access to rb in projectile
+       rigidbody.mass = 1f;
        var heavyState = new HeavyState();
-
 
        // Act
        projectile.SetState(heavyState);
 
 
        // Assert
-       Assert.AreEqual(4f, mockProjectile.mass);
+       Assert.AreEqual(4f, rigidbody.mass);
    }
 }
 
