@@ -6,8 +6,8 @@ using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
-    public Text scoreText; // Reference to UI text
-    public int score = 0; // Current score
+    public Text scoreText;
+    public int score = 0;
 
     private void OnEnable()
     {

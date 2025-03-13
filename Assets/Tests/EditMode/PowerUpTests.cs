@@ -27,6 +27,22 @@ public class PowerUpTests
        Assert.AreNotEqual(new Vector2(5, 0), rigidbody.velocity);
    }
 
+   [Test]
+    public void FastState_ApplyEffect_IncreasesSpeed()
+    {
+        // Arrange
+        var fastState = new FastState();
+        var rigidbody = new GameObject().AddComponent<Rigidbody2D>();
+        rigidbody.velocity = new Vector2(2, 0);
+    
+        // Act
+        fastState.ApplyEffect(rigidbody);
+
+        // Assert
+        var newVelocity = new Vector2(2, 0) * 1.75f;
+        Assert.AreEqual(newVelocity, rigidbody.velocity);
+    }
+
 
    [Test]
    public void NormalState_ApplyEffect_NormalMassAndVelocity()
