@@ -132,15 +132,15 @@ public class PowerUpTests
        var projectile = projectileObject.AddComponent<Projectile>();
        var rigidbody = projectileObject.AddComponent<Rigidbody2D>();
        projectile.GetType().GetField("rb", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).SetValue(projectile, rigidbody); //access to rb in projectile
-       rigidbody.mass = 1f;
-       var heavyState = new HeavyState();
+       var mockState = Substitute.For<IProjectileState>();
 
        // Act
-       projectile.SetState(heavyState);
+       projectile.SetState(mockState);
 
 
        // Assert
-       Assert.AreEqual(4f, rigidbody.mass);
+
+       mockState.Received(1).ApplyEffect(rigidbody);
    }
 }
 
